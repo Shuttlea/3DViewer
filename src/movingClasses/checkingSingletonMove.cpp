@@ -1,8 +1,10 @@
 #include <iostream>
 
-#include "singleton.h"
-#include "../movingClasses/movingClasses.h"
-#include "../movingClasses/movingStrategy.h"
+#include "../Model/singleton.h"
+#include "movingClasses.h"
+#include "movingStrategy.h"
+// #include ""
+
 
 void create(int count);
 void modding();
@@ -11,9 +13,16 @@ void print();
 int main() { 
   create(10);
   print();
-  modding();
+  //modding();
+
   std::cout<<std::endl;
+
+  s21::MovingContext context;
+
+  context.setStrategy(std::make_unique<s21::ScaleVertex>(), 2, 'c');
+  context.strategy();
   print();
+
   return 0; }
 
 void create(int count) {

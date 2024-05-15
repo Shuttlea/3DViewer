@@ -13,8 +13,11 @@ namespace s21 {
     char axi_;
 
   public:
-    void setStrategy(std::unique_ptr<MovingStrategy> &&movingStrategy_) {
+    void setStrategy(std::unique_ptr<MovingStrategy> &&movingStrategy_, 
+                      float moveValue, char axi) {
       movingStrategy = std::move(movingStrategy_);
+      moveValue_ = moveValue;
+      axi_ = axi;
     }
     
     void strategy() {
