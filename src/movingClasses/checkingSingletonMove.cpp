@@ -19,7 +19,23 @@ int main() {
 
   s21::MovingContext context;
 
-  context.setStrategy(std::make_unique<s21::ScaleVertex>(), 2, 'c');
+  
+  float a;
+  char c, z;
+
+  std::cin >> z >> a >> c ;
+
+  switch (z){
+    case ('m'):
+      context.setStrategy(std::make_unique<s21::MoveVertex>(), a, c);
+      break;
+    case ('r'):
+      context.setStrategy(std::make_unique<s21::RotateVertex>(), a, c);
+      break;
+    case ('s'):
+      context.setStrategy(std::make_unique<s21::ScaleVertex>(), a, c);
+      break;
+  }
   context.strategy();
   print();
 

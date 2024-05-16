@@ -46,21 +46,21 @@ namespace s21{
       float sina = sin((M_PI / 180) * moveValue);
       float cosa = cos((M_PI / 180) * moveValue);
       if (axi == 'x' || axi == 'X') {
-        for (int i = 0; i < moveValue; i++) {
+        for (int i = 0; i < count; i++) {
           float vertexTmp[3] = {vertex[i][0], vertex[i][1], vertex[i][2]};
           vertex[i][0] = vertexTmp[0];
           vertex[i][1] = vertexTmp[1] * cosa + vertexTmp[2] * (-sina);
           vertex[i][2] = vertexTmp[1] * sina + vertexTmp[2] * cosa;
         }
       } else if (axi == 'y' || axi == 'Y') {
-        for (int i = 0; i < moveValue; i++) {
+        for (int i = 0; i < count; i++) {
           float vertexTmp[3] = {vertex[i][0], vertex[i][1], vertex[i][2]};
           vertex[i][0] = vertexTmp[0] * cosa + vertexTmp[2] * sina;
           vertex[i][1] = vertexTmp[1];
           vertex[i][2] = vertexTmp[0] * (-sina) + vertexTmp[2] * cosa;
         }
       } else if (axi == 'z' || axi == 'Z') {
-        for (int i = 0; i < moveValue; i++) {
+        for (int i = 0; i < count; i++) {
           float vertexTmp[3] = {vertex[i][0], vertex[i][1], vertex[i][2]};
           vertex[i][0] = vertexTmp[0] * cosa + vertexTmp[1] * (-sina);
           vertex[i][1] = vertexTmp[0] * sina + vertexTmp[1] * cosa;
