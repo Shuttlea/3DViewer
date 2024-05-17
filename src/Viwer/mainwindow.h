@@ -13,12 +13,15 @@
 #include "./gifmaker/qgifglobal.h"
 #include "./gifmaker/qgifimage.h"
 #include "./gifmaker/qgifimage_p.h"
+#include "../Controller/controller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
+
+namespace s21{
 
 /*!
         \brief Класс основного окна
@@ -29,13 +32,14 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(QWidget *parent = nullptr);
+  MainWindow(Controller * controller,QWidget *parent = nullptr);
   ~MainWindow();
 
  public slots:
   void Info(int edges_count, int vertex_count);
 
  private:
+  Controller* controller_;
   int imagecounter;
   int screenshotcounter;
   int gifcounter;
@@ -125,4 +129,6 @@ class MainWindow : public QMainWindow {
 
   QSettings *settings;
 };
+
+}//namecpace s21
 #endif  // MAINWINDOW_H

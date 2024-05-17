@@ -2,8 +2,10 @@
 
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow) {
+namespace s21{
+
+MainWindow::MainWindow(Controller * controller,QWidget *parent)
+    : controller_(controller), QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   gifcounter = 1;
   connect(this, &MainWindow::signal, ui->widget,
@@ -50,13 +52,16 @@ MainWindow::~MainWindow() {
 void MainWindow::on_OpenFileButton_clicked() {
   QFileDialog *qOpenFile = new QFileDialog;
 
-  QString fileName;
+//  QString fileName;
+  std::string fileName;
   fileName = qOpenFile->getOpenFileName(this, tr("Open Model"), "./models/",
                                         "file (*.obj)", 0,
-                                        QFileDialog::DontUseNativeDialog);
-  ui->FileNamelineEdit->setText(fileName);
-  ui->FileNameInfLineEdit->setText(QFileInfo(fileName).fileName());
-  emit signal(fileName);
+                                        QFileDialog::DontUseNativeDialog).toStdString();
+  ui->FileNamelineEdit->setText(QString::fromStdString(fileName));
+  ui->FileNameInfLineEdit->setText(QFileInfo(QString::fromStdString(fileName)).fileName());
+//  controller_->openFile(fileName.toStdString());
+  controller_->openFile(fileName);
+  emit signal(QString::fromStdString(fileName));
   delete (qOpenFile);
 }
 
@@ -237,3 +242,5 @@ void MainWindow::Info(int edges_count, int vertex_count) {
 }
 
 void MainWindow::on_ProjectionButton_clicked() { emit ChangeProjection(); }
+
+}//namespace s21

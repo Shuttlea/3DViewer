@@ -25,8 +25,18 @@ set(PROJECT_SOURCES
         Viwer/mainwindow.ui
         Viwer/myopenglwidget.h
         Viwer/myopenglwidget.cpp
+        Model/facade.cpp
+        Model/facade.h
+        Model/singleton.cpp
+        Model/singleton.h
+        Model/openFile.cpp
+        Model/openFile.h
+        Model/reader.cpp
+        Model/reader.h
         Model/viewer.c
         Model/viewer.h
+        Controller/controller.h
+        Controller/controller.cpp
         gifmaker/dgif_lib.c
         gifmaker/egif_lib.c
         gifmaker/gif_err.c

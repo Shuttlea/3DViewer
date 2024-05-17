@@ -16,6 +16,8 @@ extern "C" {
 
 #include "mainwindow.h"
 
+namespace s21{
+
 /*!
         \brief Класс окна отображения модели
 
@@ -111,5 +113,7 @@ class MyOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   void paintGL() override;
   void resizeGL(int w, int h) override;
 };
+
+}//namespace s21
 
 #endif  // MYOPENGLWIDGET_H
