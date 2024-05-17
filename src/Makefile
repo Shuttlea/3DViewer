@@ -42,8 +42,8 @@ gcov_report: tests
 	gcovr $(GCOV_EX) --html --html-details -o report/coverage_report.html
 
 clean:
-	rm -rf build $(HOME)/Desktop/QOpenGLWidget ./3DViewer-1.0 3DViewer.tar test/*.o test/testing test/*.gcno test/*.gcda report latex html
+	rm -rf build a.out $(HOME)/Desktop/QOpenGLWidget ./3DViewer-1.0 3DViewer.tar test/*.o test/testing test/*.gcno test/*.gcda report latex html
 
 clang:
 #	clang-format -i *.c *.cpp *.h test/*.c Viwer/*.cpp Viwer/*.h Model/*.h Model/*.cpp
-	clang-format -i  test/*.c Viwer/*.cpp Viwer/*.h Model/*.h Model/*.cpp
+	clang-format -i  test/*.c Viwer/*.cpp Viwer/*.h Model/*.h Model/*.cpp Controller/*.cpp Controller/*.h

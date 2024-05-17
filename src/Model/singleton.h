@@ -1,7 +1,7 @@
 #ifndef SINGLETON_H
 #define SINGLETON_H
 
-// #include <vector>
+namespace s21 {
 
 typedef struct side {
   int edge_count;
@@ -9,17 +9,13 @@ typedef struct side {
   struct side *ptr;
 } side;
 
-// typedef struct objData {
-//   side edge;
-//   float** vertMatr;
-//   int vertCount;
-// }objData;
-
 class Singleton {
  private:
   static Singleton *singleton_;
   float **vertMat_;
   int vertCount_;
+  side *firstSide_ = nullptr;
+  side *lastSide_;
 
   Singleton(){};
   ~Singleton(){};
@@ -32,9 +28,10 @@ class Singleton {
   float **CreateMatrix(int count);
   float **vertMatrix();
   int &vertCount();
-  // void create(int size);
+  side *addSide(int &count);
+  side *getSides();
 };
 
-#endif
+}  // namespace s21
 
-// float** vert_matrix = Singleton.getVertex();
+#endif

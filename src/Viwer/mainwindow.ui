@@ -26,7 +26,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="MyOpenGLWidget" name="widget" native="true">
+   <widget class="s21::MyOpenGLWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -717,7 +717,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyOpenGLWidget</class>
+   <class>s21::MyOpenGLWidget</class>
    <extends>QWidget</extends>
    <header location="global">Viwer/myopenglwidget.h</header>
    <container>1</container>
