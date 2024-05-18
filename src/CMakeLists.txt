@@ -37,6 +37,8 @@ set(PROJECT_SOURCES
         Model/viewer.h
         Controller/controller.h
         Controller/controller.cpp
+        movingClasses/movingClasses.h
+        movingClasses/movingStrategy.h
         gifmaker/dgif_lib.c
         gifmaker/egif_lib.c
         gifmaker/gif_err.c

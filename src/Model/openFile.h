@@ -11,14 +11,16 @@
 
 namespace s21 {
 class OpenFile {
-  // private:
+  private:
+    void calculateVertCount(std::ifstream& in);
+//    void cleanSingleton();
   //   std::string fileName_;
   //   OpenFile(std::string file):fileName_(file){}
   // Strategy* reader;
 
  public:
   void open(std::string fileName);
-  void calculateVertCount(std::ifstream& in);
+//  void calculateVertCount(std::ifstream& in);
 };
 
 }  // namespace s21

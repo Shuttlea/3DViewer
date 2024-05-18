@@ -110,7 +110,8 @@ void MyOpenGLWidget::MakeVertexArray(QString filename) {
 //  QByteArray filename_char = filename.toLatin1();
 //  vertex_matrix =
 //      open_obj(filename_char.data(), &vertex_count, &edges_count, &ptr);
-//  emit Info(edges_count / 2, vertex_count);
+    Singleton& singl = Singleton::getInstance();
+  emit Info(singl.vertCount(), singl.vertCount());
   update();
 }
 
@@ -134,7 +135,7 @@ void MyOpenGLWidget::Move(float value, int axi) {
 }
 
 void MyOpenGLWidget::Scale(float scale_change) {
-  scale(vertex_matrix, scale_change, vertex_count);
+//  scale(vertex_matrix, scale_change, vertex_count);
   update();
 }
 

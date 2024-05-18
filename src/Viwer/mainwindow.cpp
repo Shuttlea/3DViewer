@@ -54,7 +54,7 @@ void MainWindow::on_OpenFileButton_clicked() {
 
 //  QString fileName;
   std::string fileName;
-  fileName = qOpenFile->getOpenFileName(this, tr("Open Model"), "./models/",
+  fileName = qOpenFile->getOpenFileName(this, tr("Open Model"), "../models/",
                                         "file (*.obj)", 0,
                                         QFileDialog::DontUseNativeDialog).toStdString();
   ui->FileNamelineEdit->setText(QString::fromStdString(fileName));
@@ -85,6 +85,7 @@ void MainWindow::scalePlusClicked() {
   float scale_change = ui->ScalelineEdit->text().toFloat()
                            ? (1 * ui->ScalelineEdit->text().toFloat())
                            : 1.1;
+  controller_->scale(scale_change,'x');
   emit ScalePlus(scale_change);
 }
 
@@ -92,6 +93,7 @@ void MainWindow::scaleMinusClicked() {
   float scale_change = ui->ScalelineEdit->text().toFloat()
                            ? (1 / ui->ScalelineEdit->text().toFloat())
                            : 0.9;
+  controller_->scale(scale_change,'x');
   emit ScalePlus(scale_change);
 }
 

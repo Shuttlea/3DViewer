@@ -12,7 +12,7 @@ typedef struct side {
 class Singleton {
  private:
   static Singleton *singleton_;
-  float **vertMat_;
+  float **vertMat_ = nullptr;
   int vertCount_;
   side *firstSide_ = nullptr;
   side *lastSide_;

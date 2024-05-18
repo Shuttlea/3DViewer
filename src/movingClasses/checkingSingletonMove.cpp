@@ -42,7 +42,7 @@ int main() {
   return 0; }
 
 void create(int count) {
-  Singleton& singl = Singleton::getInstance();
+  s21::Singleton& singl = s21::Singleton::getInstance();
   singl.CreateMatrix(count);
   for (int i = 0; i < count; i++) {
     singl.vertMatrix()[i][0] = i + 1;
