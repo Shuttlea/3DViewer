@@ -53,7 +53,7 @@ class MyOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   /*!
         \brief Метод поворота модели
 */
-  void Rotate(float value, char axi);
+  void Rotate();
   /*!
         \brief Метод сдвига модели
 */

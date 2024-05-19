@@ -6,8 +6,8 @@ void Controller::openFile(std::string& filename){
   facade_->open(filename);
 }
 
-void Controller::scale(float value,char axi){
-    facade_->scale(value,axi);
+void Controller::modify(char c,float value,char axi){
+    facade_->modify(c,value,axi);
 }
 
 }//namespace s21

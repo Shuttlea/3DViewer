@@ -7,9 +7,20 @@ void Facade::open(std::string & fileName){
   file->open(fileName);
 }
 
-void Facade::scale(float value,char axi){
+void Facade::modify(char c,float value,char axi){
     MovingContext context;
-    context.setStrategy(std::make_unique<ScaleVertex>(),value,axi);
+    switch (c){
+      case ('m'):
+        context.setStrategy(std::make_unique<s21::MoveVertex>(),value,axi);
+        break;
+      case ('r'):
+        context.setStrategy(std::make_unique<s21::RotateVertex>(), value,axi);
+        break;
+      case ('s'):
+        context.setStrategy(std::make_unique<s21::ScaleVertex>(), value,axi);
+        break;
+    }
+//    context.setStrategy(std::make_unique<ScaleVertex>(),value,axi);
     context.strategy();
 }
 

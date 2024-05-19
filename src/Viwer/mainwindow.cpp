@@ -8,6 +8,9 @@ MainWindow::MainWindow(Controller * controller,QWidget *parent)
     : controller_(controller), QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   gifcounter = 1;
+  ui->ScalelineEdit->setValidator(new QIntValidator(0,1000,this));
+  ui->MovelineEdit->setValidator(new QIntValidator(-1000,1000,this));
+  ui->RotatelineEdit->setValidator(new QIntValidator(-1000,1000,this));
   connect(this, &MainWindow::signal, ui->widget,
           &MyOpenGLWidget::MakeVertexArray);
   connect(this, &MainWindow::StopTimer, ui->widget, &MyOpenGLWidget::StopTimer);
@@ -68,13 +71,16 @@ void MainWindow::on_OpenFileButton_clicked() {
 void MainWindow::on_StopButton_clicked() { emit StopTimer(); }
 
 void MainWindow::on_RotateButton_clicked() {
-  emit Rotate(ui->RotatelineEdit->text().toFloat(),
-              ui->XRotateRB->isChecked()   ? 'x'
-              : ui->YRotateRB->isChecked() ? 'y'
-                                           : 'z');
+    controller_->modify('r',ui->RotatelineEdit->text().toFloat(),ui->XRotateRB->isChecked()? 'x': ui->YRotateRB->isChecked() ? 'y' : 'z');
+//  emit Rotate(ui->RotatelineEdit->text().toFloat(),
+//              ui->XRotateRB->isChecked()   ? 'x'
+//              : ui->YRotateRB->isChecked() ? 'y'
+//                                           : 'z');
+    emit Rotate();
 }
 
 void MainWindow::on_MoveButton_clicked() {
+  controller_->modify('m',ui->MovelineEdit->text().toFloat() / 10, ui->XMoveRB->isChecked()? 'x': ui->YMoveRB->isChecked() ? 'y': 'z');
   emit Move(ui->MovelineEdit->text().toFloat() / 10,
             ui->XMoveRB->isChecked()   ? 1
             : ui->YMoveRB->isChecked() ? 2
@@ -85,7 +91,7 @@ void MainWindow::scalePlusClicked() {
   float scale_change = ui->ScalelineEdit->text().toFloat()
                            ? (1 * ui->ScalelineEdit->text().toFloat())
                            : 1.1;
-  controller_->scale(scale_change,'x');
+  controller_->modify('s',scale_change,'x');
   emit ScalePlus(scale_change);
 }
 
@@ -93,7 +99,7 @@ void MainWindow::scaleMinusClicked() {
   float scale_change = ui->ScalelineEdit->text().toFloat()
                            ? (1 / ui->ScalelineEdit->text().toFloat())
                            : 0.9;
-  controller_->scale(scale_change,'x');
+  controller_->modify('s',scale_change,'x');
   emit ScalePlus(scale_change);
 }
 

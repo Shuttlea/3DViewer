@@ -13,6 +13,7 @@ void OpenFile::open(std::string fileName) {
     in.seekg(0);
     reader->read(in);
     in.close();
+    delete reader;
   }
 }
 

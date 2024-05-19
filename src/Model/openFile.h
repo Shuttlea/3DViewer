@@ -8,6 +8,8 @@
 
 #include "reader.h"
 #include "singleton.h"
+//#include "../movingClasses/movingClasses.h"
+
 
 namespace s21 {
 class OpenFile {

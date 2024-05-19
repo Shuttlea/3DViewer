@@ -120,17 +120,17 @@ void MyOpenGLWidget::StopTimer() {
   tmr.stop();
 }
 
-void MyOpenGLWidget::Rotate(float value, char axi) {
-  rotate(vertex_matrix, value, axi, vertex_count);
+void MyOpenGLWidget::Rotate() {
+//  rotate(vertex_matrix, value, axi, vertex_count);
   update();
 }
 
 void MyOpenGLWidget::Move(float value, int axi) {
-  float x = 0, y = 0, z = 0;
-  if (axi == 1) x = value;
-  if (axi == 2) y = value;
-  if (axi == 3) z = value;
-  moveVertex(vertex_matrix, vertex_count, x, y, z);
+//  float x = 0, y = 0, z = 0;
+//  if (axi == 1) x = value;
+//  if (axi == 2) y = value;
+//  if (axi == 3) z = value;
+//  moveVertex(vertex_matrix, vertex_count, x, y, z);
   update();
 }
 

@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QSettings>
 #include <QTimer>
+#include <QIntValidator>
 
 #include "./gifmaker/gif_hash.h"
 #include "./gifmaker/gif_lib.h"
@@ -50,7 +51,7 @@ class MainWindow : public QMainWindow {
  signals:
   void signal(QString);
   void StopTimer();
-  void Rotate(float value, char axi);
+  void Rotate();
   void Move(float value, int axi);
   void ScalePlus(float scale_change);
   void ChangeProjection();
