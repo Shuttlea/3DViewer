@@ -3,9 +3,9 @@
 
 #define GL_SILENCE_DEPRECATION
 
-extern "C" {
-#include "../Model/viewer.h"
-}
+//extern "C" {
+//#include "../Model/viewer.h"
+//}
 
 #include <OpenGl/gl.h>
 #include <OpenGl/glu.h>
@@ -27,28 +27,9 @@ class MyOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
 
  private:
-//  float z;
   side* ptr = NULL;
-  int vertex_count;
-  int edges_count;
-  float** vertex_matrix;
-
- signals:
-  void Info(int edges_count, int vertex_count);
 
  public slots:
-//  /*!
-//          \brief Метод для проигрыш поворота по кнопке Play
-//  */
-//  void changeZ();
-  /*!
-          \brief Метод для создания матрицы вершин
-  */
-  void MakeVertexArray(QString filename);
-//  /*!
-//          \brief Метод остановки проигрывания поворота
-//  */
-//  void StopTimer();
   /*!
         \brief Метод поворота модели
 */

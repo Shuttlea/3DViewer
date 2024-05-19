@@ -14,6 +14,7 @@ class Singleton {
   static Singleton *singleton_;
   float **vertMat_ = nullptr;
   int vertCount_;
+  int edgesCount_=0;
   side *firstSide_ = nullptr;
   side *lastSide_;
 
@@ -28,6 +29,7 @@ class Singleton {
   float **CreateMatrix(int count);
   float **vertMatrix();
   int &vertCount();
+  int &edgesCount();
   side *addSide(int &count);
   side *getSides();
 };

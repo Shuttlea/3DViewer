@@ -37,9 +37,6 @@ class MainWindow : public QMainWindow {
   MainWindow(Controller * controller,QWidget *parent = nullptr);
   ~MainWindow();
 
- public slots:
-  void Info(int edges_count, int vertex_count);
-
  private:
   Controller* controller_;
   int imagecounter;
@@ -51,7 +48,6 @@ class MainWindow : public QMainWindow {
   QDir dir;
 
  signals:
-  void signal(QString);
   void StopTimer();
   void Rotate();
   void Move(float value, int axi);
@@ -125,9 +121,7 @@ class MainWindow : public QMainWindow {
   void MakeGif();
   void NeedGif();
   void play();
-
   void on_ProjectionButton_clicked();
-
   void on_PlayButton_clicked();
 
 private:

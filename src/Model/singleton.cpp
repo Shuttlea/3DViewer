@@ -10,13 +10,11 @@ Singleton& Singleton::getInstance() {
 }
 
 float** Singleton::CreateMatrix(int count) {
-//  vertCount_ = count;
-
-// NOT OPEN NEXT FIGURE. I THINK MISTAKE IS HERE
   if (firstSide_!=nullptr){
       for (int i = 0; i < vertCount_; ++i) delete vertMat_[i];
             delete vertMat_;
       vertCount_ = 0;
+      edgesCount_ = 0;
       side* a = firstSide_;
       side* b;
       while (a!=nullptr){
@@ -28,10 +26,6 @@ float** Singleton::CreateMatrix(int count) {
         firstSide_ = nullptr;
         lastSide_ = nullptr;
   }
-//  if (vertMat_ == nullptr){
-//      for (int i = 0; i < count; ++i) delete vertMat_[i];
-//      delete vertMat_;
-//  }
     vertCount_ = count;
   vertMat_ = new float*[count];
   for (int i = 0; i < count; ++i) vertMat_[i] = new float[3];
@@ -41,6 +35,11 @@ float** Singleton::CreateMatrix(int count) {
 float** Singleton::vertMatrix() { return vertMat_; }
 
 int& Singleton::vertCount() { return vertCount_; }
+
+int &Singleton::edgesCount()
+{
+    return edgesCount_;
+}
 
 side* Singleton::addSide(int& count) {
 

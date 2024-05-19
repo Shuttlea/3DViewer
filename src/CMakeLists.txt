@@ -33,8 +33,6 @@ set(PROJECT_SOURCES
         Model/openFile.h
         Model/reader.cpp
         Model/reader.h
-        Model/viewer.c
-        Model/viewer.h
         Controller/controller.h
         Controller/controller.cpp
         movingClasses/movingClasses.h

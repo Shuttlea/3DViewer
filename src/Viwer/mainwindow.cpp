@@ -10,12 +10,9 @@ MainWindow::MainWindow(Controller * controller,QWidget *parent)
   gifcounter = 1;
   QRegularExpression rxPositiveDigits("[0-9]*\\.[0-9]*");
   ui->ScalelineEdit->setValidator(new QRegularExpressionValidator(rxPositiveDigits,this));
-   QRegularExpression rxDigits("^\\-?[0-9]*\\.[0-9]*");
+   QRegularExpression rxDigits("-?[0-9]*\\.[0-9]*");
   ui->MovelineEdit->setValidator(new QRegularExpressionValidator(rxDigits,this));
   ui->RotatelineEdit->setValidator(new QRegularExpressionValidator(rxDigits,this));
-  connect(this, &MainWindow::signal, ui->widget,
-          &MyOpenGLWidget::MakeVertexArray);
-//  connect(this, &MainWindow::StopTimer, ui->widget, &MyOpenGLWidget::StopTimer);
   connect(this, &MainWindow::Rotate, ui->widget, &MyOpenGLWidget::Rotate);
   connect(this, &MainWindow::Move, ui->widget, &MyOpenGLWidget::Move);
   connect(ui->ScalePlus, SIGNAL(clicked()), this, SLOT(scalePlusClicked()));
@@ -27,7 +24,6 @@ MainWindow::MainWindow(Controller * controller,QWidget *parent)
           &MainWindow::ChangeLineColor);
   connect(ui->VerticesColor, &QPushButton::clicked, this,
           &MainWindow::ChangePointColor);
-  connect(ui->widget, &MyOpenGLWidget::Info, this, &MainWindow::Info);
   connect(this, &MainWindow::ChangeProjection, ui->widget,
           &MyOpenGLWidget::ChangeProjection);
   settings = new QSettings("21school", "3D_viewer", this);
@@ -57,17 +53,16 @@ MainWindow::~MainWindow() {
 
 void MainWindow::on_OpenFileButton_clicked() {
   QFileDialog *qOpenFile = new QFileDialog;
-
-//  QString fileName;
   std::string fileName;
   fileName = qOpenFile->getOpenFileName(this, tr("Open Model"), "../models/",
                                         "file (*.obj)", 0,
                                         QFileDialog::DontUseNativeDialog).toStdString();
   ui->FileNamelineEdit->setText(QString::fromStdString(fileName));
   ui->FileNameInfLineEdit->setText(QFileInfo(QString::fromStdString(fileName)).fileName());
-//  controller_->openFile(fileName.toStdString());
   controller_->openFile(fileName);
-  emit signal(QString::fromStdString(fileName));
+  Singleton& singl = Singleton::getInstance();
+  ui->EdgeCountLineEdit->setText(QString::number(singl.edgesCount()));
+  ui->VertCountLineEdit->setText(QString::number(singl.vertCount()));
   delete (qOpenFile);
 }
 
@@ -75,10 +70,6 @@ void MainWindow::on_StopButton_clicked() { timerPlay_.stop(); }
 
 void MainWindow::on_RotateButton_clicked() {
     controller_->modify('r',ui->RotatelineEdit->text().toFloat(),ui->XRotateRB->isChecked()? 'x': ui->YRotateRB->isChecked() ? 'y' : 'z');
-//  emit Rotate(ui->RotatelineEdit->text().toFloat(),
-//              ui->XRotateRB->isChecked()   ? 'x'
-//              : ui->YRotateRB->isChecked() ? 'y'
-//                                           : 'z');
     emit Rotate();
 }
 
@@ -245,11 +236,6 @@ void MainWindow::LoadSettings() {
     ui->widget->lcolor_.setRgb(255, 255, 255, 255);
     ui->widget->pcolor_.setRgb(255, 255, 255, 255);
   }
-}
-
-void MainWindow::Info(int edges_count, int vertex_count) {
-  ui->EdgeCountLineEdit->setText(QString::number(edges_count));
-  ui->VertCountLineEdit->setText(QString::number(vertex_count));
 }
 
 void MainWindow::on_ProjectionButton_clicked() { emit ChangeProjection(); }

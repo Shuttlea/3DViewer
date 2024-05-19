@@ -20,7 +20,6 @@ void Facade::modify(char c,float value,char axi){
         context.setStrategy(std::make_unique<s21::ScaleVertex>(), value,axi);
         break;
     }
-//    context.setStrategy(std::make_unique<ScaleVertex>(),value,axi);
     context.strategy();
 }
 
