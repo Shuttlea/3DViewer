@@ -10,7 +10,7 @@ Singleton& Singleton::getInstance() {
 }
 
 float** Singleton::CreateMatrix(int count) {
-  vertCount_ = count;
+//  vertCount_ = count;
 
 // NOT OPEN NEXT FIGURE. I THINK MISTAKE IS HERE
   if (firstSide_!=nullptr){

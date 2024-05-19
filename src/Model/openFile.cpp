@@ -19,13 +19,14 @@ void OpenFile::open(std::string fileName) {
 void OpenFile::calculateVertCount(std::ifstream& in) {
   Singleton& singl = Singleton::getInstance();
   char first, second;
-  singl.vertCount() = 0;
+//  singl.vertCount() = 0;
+  int count=0;
   std::string s;
   while (in.get(first) && in.get(second)) {
-    if (first == 'v' && second == ' ') ++singl.vertCount();
+    if (first == 'v' && second == ' ') ++count;
     std::getline(in, s);
   }
-  singl.CreateMatrix(singl.vertCount());
+  singl.CreateMatrix(count);
 }
 
 //void OpenFile::cleanSingleton(){
