@@ -728,22 +728,5 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>PlayButton</sender>
-   <signal>clicked()</signal>
-   <receiver>widget</receiver>
-   <slot>changeZ()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>646</x>
-     <y>207</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>412</x>
-     <y>303</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

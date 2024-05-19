@@ -15,7 +15,7 @@ MainWindow::MainWindow(Controller * controller,QWidget *parent)
   ui->RotatelineEdit->setValidator(new QRegularExpressionValidator(rxDigits,this));
   connect(this, &MainWindow::signal, ui->widget,
           &MyOpenGLWidget::MakeVertexArray);
-  connect(this, &MainWindow::StopTimer, ui->widget, &MyOpenGLWidget::StopTimer);
+//  connect(this, &MainWindow::StopTimer, ui->widget, &MyOpenGLWidget::StopTimer);
   connect(this, &MainWindow::Rotate, ui->widget, &MyOpenGLWidget::Rotate);
   connect(this, &MainWindow::Move, ui->widget, &MyOpenGLWidget::Move);
   connect(ui->ScalePlus, SIGNAL(clicked()), this, SLOT(scalePlusClicked()));
@@ -46,6 +46,7 @@ MainWindow::MainWindow(Controller * controller,QWidget *parent)
   connect(ui->MakeJpeg, SIGNAL(clicked()), this, SLOT(NeedJpeg()));
   connect(ui->MakeBmp, SIGNAL(clicked()), this, SLOT(NeedBmp()));
   connect(ui->MakeGifButt, SIGNAL(clicked()), this, SLOT(NeedGif()));
+  connect(&timerPlay_, SIGNAL(timeout()), this, SLOT(play()));
 }
 
 MainWindow::~MainWindow() {
@@ -70,7 +71,7 @@ void MainWindow::on_OpenFileButton_clicked() {
   delete (qOpenFile);
 }
 
-void MainWindow::on_StopButton_clicked() { emit StopTimer(); }
+void MainWindow::on_StopButton_clicked() { timerPlay_.stop(); }
 
 void MainWindow::on_RotateButton_clicked() {
     controller_->modify('r',ui->RotatelineEdit->text().toFloat(),ui->XRotateRB->isChecked()? 'x': ui->YRotateRB->isChecked() ? 'y' : 'z');
@@ -252,5 +253,18 @@ void MainWindow::Info(int edges_count, int vertex_count) {
 }
 
 void MainWindow::on_ProjectionButton_clicked() { emit ChangeProjection(); }
+
+
+void MainWindow::on_PlayButton_clicked()
+{
+    timerPlay_.start(100);
+}
+
+void MainWindow::play(){
+    controller_->modify('r',1.1,'x');
+    controller_->modify('r',1.1,'y');
+    controller_->modify('r',1.1,'z');
+    emit Rotate();
+}
 
 }//namespace s21

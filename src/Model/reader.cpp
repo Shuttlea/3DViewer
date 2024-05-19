@@ -65,8 +65,8 @@ void Reader::read(std::ifstream& in) {
 }
 
 void Reader::centering(){
-    std::cout << max_coord_[0][0] << " " << max_coord_[0][1] << " " << max_coord_[0][2] << " " << std::endl;
-    std::cout << max_coord_[1][0] << " " << max_coord_[1][1] << " " << max_coord_[1][2] << " " << std::endl;
+//    std::cout << max_coord_[0][0] << " " << max_coord_[0][1] << " " << max_coord_[0][2] << " " << std::endl;
+//    std::cout << max_coord_[1][0] << " " << max_coord_[1][1] << " " << max_coord_[1][2] << " " << std::endl;
     MovingContext context;
     context.setStrategy(std::make_unique<s21::MoveVertex>(),-(max_coord_[0][0] + max_coord_[1][0]) / 2,'x');
     context.strategy();

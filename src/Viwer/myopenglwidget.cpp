@@ -5,14 +5,13 @@
 namespace s21{
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget* parent) : QOpenGLWidget{parent} {
-  z = 0;
   circle_points = false;
   show_point = false;
   point_size = 5;
   projection = true;
   dashed_line = false;
   line_width = 1;
-  connect(&tmr, SIGNAL(timeout()), this, SLOT(changeZ()));
+//  connect(&tmr, SIGNAL(timeout()), this, SLOT(changeZ()));
 }
 
 void MyOpenGLWidget::initializeGL() {
@@ -91,11 +90,11 @@ void MyOpenGLWidget::paintGL() {
   }
 }
 
-void MyOpenGLWidget::changeZ() {
-  tmr.start(100);
-  z = 0.01;
-  update();
-}
+//void MyOpenGLWidget::changeZ() {
+//  tmr.start(100);
+//  z = 0.01;
+//  update();
+//}
 
 void MyOpenGLWidget::MakeVertexArray(QString filename) {
 //  side* tmp = ptr;
@@ -115,10 +114,10 @@ void MyOpenGLWidget::MakeVertexArray(QString filename) {
   update();
 }
 
-void MyOpenGLWidget::StopTimer() {
-  z = 0;
-  tmr.stop();
-}
+//void MyOpenGLWidget::StopTimer() {
+//  z = 0;
+//  tmr.stop();
+//}
 
 void MyOpenGLWidget::Rotate() {
 //  rotate(vertex_matrix, value, axi, vertex_count);
@@ -145,19 +144,19 @@ void MyOpenGLWidget::ChangeProjection() {
 }
 
 void MyOpenGLWidget::SquarePoints() {
-  z = 0;
+//  z = 0;
   circle_points = false;
   update();
 }
 
 void MyOpenGLWidget::CirclePoints() {
-  z = 0;
+//  z = 0;
   circle_points = true;
   update();
 }
 
 void MyOpenGLWidget::ShowHidePoints() {
-  z = 0;
+//  z = 0;
   if (show_point) {
     show_point = false;
   } else {
@@ -167,7 +166,7 @@ void MyOpenGLWidget::ShowHidePoints() {
 }
 
 void MyOpenGLWidget::PointSizeChange(int size_value) {
-  z = 0;
+//  z = 0;
   point_size += size_value;
   if (point_size <= 0)
     point_size = 1;
@@ -177,7 +176,7 @@ void MyOpenGLWidget::PointSizeChange(int size_value) {
 }
 
 void MyOpenGLWidget::DashingLines() {
-  z = 0;
+//  z = 0;
   if (dashed_line) {
     dashed_line = false;
   } else {
@@ -187,7 +186,7 @@ void MyOpenGLWidget::DashingLines() {
 }
 
 void MyOpenGLWidget::LinesWidthChange(int change_value) {
-  z = 0;
+//  z = 0;
   line_width += change_value;
   if (line_width <= 0)
     line_width = 1;

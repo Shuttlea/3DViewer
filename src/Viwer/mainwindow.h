@@ -46,6 +46,7 @@ class MainWindow : public QMainWindow {
   int screenshotcounter;
   int gifcounter;
   QTimer timer;
+  QTimer timerPlay_;
   QList<QImage> jiff;
   QDir dir;
 
@@ -123,10 +124,13 @@ class MainWindow : public QMainWindow {
   void NeedBmp();
   void MakeGif();
   void NeedGif();
+  void play();
 
   void on_ProjectionButton_clicked();
 
- private:
+  void on_PlayButton_clicked();
+
+private:
   Ui::MainWindow *ui;
 
   QSettings *settings;
