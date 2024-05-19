@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QTimer>
 #include <QIntValidator>
+#include <QDoubleValidator>
 
 #include "./gifmaker/gif_hash.h"
 #include "./gifmaker/gif_lib.h"

@@ -8,9 +8,11 @@ MainWindow::MainWindow(Controller * controller,QWidget *parent)
     : controller_(controller), QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   gifcounter = 1;
-  ui->ScalelineEdit->setValidator(new QIntValidator(0,1000,this));
-  ui->MovelineEdit->setValidator(new QIntValidator(-1000,1000,this));
-  ui->RotatelineEdit->setValidator(new QIntValidator(-1000,1000,this));
+  QRegularExpression rxPositiveDigits("[0-9]*\\.[0-9]*");
+  ui->ScalelineEdit->setValidator(new QRegularExpressionValidator(rxPositiveDigits,this));
+   QRegularExpression rxDigits("^\\-?[0-9]*\\.[0-9]*");
+  ui->MovelineEdit->setValidator(new QRegularExpressionValidator(rxDigits,this));
+  ui->RotatelineEdit->setValidator(new QRegularExpressionValidator(rxDigits,this));
   connect(this, &MainWindow::signal, ui->widget,
           &MyOpenGLWidget::MakeVertexArray);
   connect(this, &MainWindow::StopTimer, ui->widget, &MyOpenGLWidget::StopTimer);
