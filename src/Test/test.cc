@@ -57,7 +57,6 @@ TEST(FacadeRotateY, true){
 
   f.open(filename);
   f.modify('r', 90, 'y');
-  std::cout << singl.vertMatrix()[0][1] << std::endl;
   ASSERT_NEAR(singl.vertMatrix()[0][1], 0.5, 0.01);
 }
 TEST(FacadeRotateZ, true){
@@ -87,7 +86,6 @@ TEST(FacadeMove, true){
 
   f.open(filename);
   f.modify('m', 90, 'z');
-  std::cout << singl.vertMatrix()[0][1] << std::endl;
   ASSERT_NEAR(singl.vertMatrix()[0][1], 0.5, 0.01);
 }
 
