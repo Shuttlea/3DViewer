@@ -4,7 +4,10 @@
 #include "../Model/facade.h"
 
 namespace s21 {
-
+/*!
+          \brief Класс контроллера MVC, вызывает одноименные методы класса
+   Facade в модели
+  */
 class Controller {
  private:
   Facade* facade_;

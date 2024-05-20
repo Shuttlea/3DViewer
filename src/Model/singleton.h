@@ -9,6 +9,9 @@ typedef struct side {
   struct side *ptr;
 } side;
 
+/*!
+          \brief Класс, реализующий паттерн Синглтон
+  */
 class Singleton {
  private:
   static Singleton *singleton_;
@@ -25,8 +28,18 @@ class Singleton {
   Singleton(Singleton &other) = delete;
   void operator=(const Singleton &) = delete;
 
+  /*!
+          \brief Метод, создающий экземпляр класса Singleton
+  */
   static Singleton &getInstance();
+  /*!
+          \brief Метод, выделяющий память для координар вершин
+  */
   float **CreateMatrix(int count);
+  /*!
+          \brief Метод, позволяющий присваивать и считывать координаты
+     конкретных вершин
+  */
   float **vertMatrix();
   int &vertCount();
   int &edgesCount();

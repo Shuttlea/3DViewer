@@ -6,13 +6,22 @@
 #include "../Model/singleton.h"
 
 namespace s21 {
+/*!
+        \brief Родительский класс для разных стратегий изменения точек
+*/
 class MovingStrategy {
  public:
   virtual ~MovingStrategy(){};
-
+  /*!
+            \brief Виртуальный метод переписываня координат точек, согласно
+     выбранной стратегии
+    */
   virtual void movingVertex(float moveValue, char axi) const = 0;
 };
 
+/*!
+          \brief Класс сдвига верщин в одно направлении
+  */
 class MoveVertex : public MovingStrategy {
  public:
   void movingVertex(float moveValue, char axi) const override {
@@ -35,6 +44,9 @@ class MoveVertex : public MovingStrategy {
   }
 };
 
+/*!
+          \brief Класс поворота верщин вокруг одной оси
+  */
 class RotateVertex : public MovingStrategy {
  public:
   void movingVertex(float moveValue, char axi) const override {
@@ -68,6 +80,9 @@ class RotateVertex : public MovingStrategy {
   }
 };
 
+/*!
+          \brief Класс изменения масштаба изображения
+  */
 class ScaleVertex : public MovingStrategy {
  public:
   void movingVertex(float moveValue, char axi) const override {

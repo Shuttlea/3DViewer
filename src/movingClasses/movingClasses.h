@@ -6,6 +6,10 @@
 #include "movingStrategy.h"
 
 namespace s21 {
+/*!
+        \brief Класс опредения контекста для выбора стратегии измнения координат
+   вершин
+*/
 class MovingContext {
  private:
   std::unique_ptr<s21::MovingStrategy> movingStrategy{};
@@ -13,6 +17,9 @@ class MovingContext {
   char axi_;
 
  public:
+  /*!
+           \brief Метод, задающий стратегию
+   */
   void setStrategy(std::unique_ptr<MovingStrategy> &&movingStrategy_,
                    float moveValue, char axi) {
     movingStrategy = std::move(movingStrategy_);
@@ -20,6 +27,9 @@ class MovingContext {
     axi_ = axi;
   }
 
+  /*!
+            \brief Метод, выдзывающий переписывание координат точек
+    */
   void strategy() {
     if (movingStrategy) movingStrategy->movingVertex(moveValue_, axi_);
   }

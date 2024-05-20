@@ -6,9 +6,20 @@
 
 namespace s21 {
 
+/*!
+          \brief Класс, реализующий патерн Фасад
+  */
+
 class Facade {
  public:
+  /*!
+           \brief Метод для открытия файла посредствм класса OpenFile
+   */
   void open(std::string& fileName);
+  /*!
+          \brief Метод вызывающий смену контекста MovingContext, для реализации
+     паттерна Стратегия
+  */
   void modify(char c, float value, char axi);
 };
 
