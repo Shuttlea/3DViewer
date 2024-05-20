@@ -1,7 +1,5 @@
 #include "myopenglwidget.h"
 
-#include "../Model/viewer.h"
-
 namespace s21 {
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget* parent) : QOpenGLWidget{parent} {
