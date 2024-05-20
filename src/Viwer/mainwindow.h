@@ -2,20 +2,20 @@
 #define MAINWINDOW_H
 
 #include <QColorDialog>
+#include <QDoubleValidator>
 #include <QFileDialog>
+#include <QIntValidator>
 #include <QMainWindow>
 #include <QSettings>
 #include <QTimer>
-#include <QIntValidator>
-#include <QDoubleValidator>
 
+#include "../Controller/controller.h"
 #include "./gifmaker/gif_hash.h"
 #include "./gifmaker/gif_lib.h"
 #include "./gifmaker/gif_lib_private.h"
 #include "./gifmaker/qgifglobal.h"
 #include "./gifmaker/qgifimage.h"
 #include "./gifmaker/qgifimage_p.h"
-#include "../Controller/controller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,7 +23,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-namespace s21{
+namespace s21 {
 
 /*!
         \brief Класс основного окна
@@ -34,11 +34,11 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(Controller * controller,QWidget *parent = nullptr);
+  MainWindow(Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
 
  private:
-  Controller* controller_;
+  Controller *controller_;
   int imagecounter;
   int screenshotcounter;
   int gifcounter;
@@ -124,11 +124,11 @@ class MainWindow : public QMainWindow {
   void on_ProjectionButton_clicked();
   void on_PlayButton_clicked();
 
-private:
+ private:
   Ui::MainWindow *ui;
 
   QSettings *settings;
 };
 
-}//namecpace s21
+}  // namespace s21
 #endif  // MAINWINDOW_H

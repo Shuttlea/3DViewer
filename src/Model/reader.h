@@ -6,19 +6,38 @@
 #include <sstream>
 #include <string>
 
-#include "singleton.h"
 #include "../movingClasses/movingClasses.h"
-
+#include "singleton.h"
 
 namespace s21 {
 
+/*!
+        \brief Класс для считывания координат вершин и граней модели
+*/
+
 class Reader {
-private:
+ private:
   float max_coord_[2][3];
+
+  /*!
+          \brief Метод считывания координат вершин
+  */
   void readV(std::string s, int& count);
-  void readF(std::string s,int& countV);
+
+  /*!
+          \brief Метод опрделения граней
+  */
+  void readF(std::string s, int& countV);
+
+  /*!
+          \brief Метод центрирования изображения
+  */
   void centering();
+
  public:
+  /*!
+          \brief Метод, объединяющий считывание вершин и граней
+  */
   void read(std::ifstream& in);
 };
 

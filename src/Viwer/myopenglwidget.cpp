@@ -2,7 +2,7 @@
 
 #include "../Model/viewer.h"
 
-namespace s21{
+namespace s21 {
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget* parent) : QOpenGLWidget{parent} {
   circle_points = false;
@@ -39,7 +39,7 @@ void MyOpenGLWidget::paintGL() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  if (sides!=nullptr) {
+  if (sides != nullptr) {
     glColor3d(lcolor_.redF(), lcolor_.greenF(), lcolor_.blueF());
     glLineWidth(line_width);
     glLineStipple(20, 0x0333);
@@ -48,7 +48,7 @@ void MyOpenGLWidget::paintGL() {
     } else if (!dashed_line) {
       glDisable(GL_LINE_STIPPLE);
     }
-    while (sides!=nullptr) {
+    while (sides != nullptr) {
       MakeFace(sides, arr);
       glVertexPointer(3, GL_FLOAT, 0, arr);
       glEnableClientState(GL_VERTEX_ARRAY);
@@ -64,30 +64,24 @@ void MyOpenGLWidget::paintGL() {
       glEnable(GL_POINT_SMOOTH);
     }
     if (show_point) {
-        s21::side* sides = singl.getSides();
-      while (sides!=nullptr) {
+      s21::side* sides = singl.getSides();
+      while (sides != nullptr) {
         MakeFace(sides, arr);
         glVertexPointer(3, GL_FLOAT, 0, arr);
         glEnableClientState(GL_VERTEX_ARRAY);
         glDrawArrays(GL_POINTS, 0, sides->edge_count);
         glDisableClientState(GL_VERTEX_ARRAY);
-       sides = sides->ptr;
+        sides = sides->ptr;
       }
     }
   }
 }
 
-void MyOpenGLWidget::Rotate() {
-  update();
-}
+void MyOpenGLWidget::Rotate() { update(); }
 
-void MyOpenGLWidget::Move(float value, int axi) {
-  update();
-}
+void MyOpenGLWidget::Move(float value, int axi) { update(); }
 
-void MyOpenGLWidget::Scale(float scale_change) {
-  update();
-}
+void MyOpenGLWidget::Scale(float scale_change) { update(); }
 
 void MyOpenGLWidget::ChangeProjection() {
   projection = !projection;
@@ -141,11 +135,11 @@ void MyOpenGLWidget::LinesWidthChange(int change_value) {
 }
 
 void MyOpenGLWidget::MakeFace(side* face_ptr, float arr[20]) {
-    Singleton& singl = Singleton::getInstance();
-    float** matrix = singl.vertMatrix();
+  Singleton& singl = Singleton::getInstance();
+  float** matrix = singl.vertMatrix();
   int counter = 0, number;
   for (int i = 0; i < face_ptr->edge_count; i++) {
-      number = face_ptr->edges[i]-1;
+    number = face_ptr->edges[i] - 1;
     for (int j = 0; j < 3; j++) {
       arr[counter] = matrix[number][j];
       counter++;
@@ -168,4 +162,4 @@ void MyOpenGLWidget::ChangePointColor(QColor c) {
   update();
 }
 
-}//namespace s21
+}  // namespace s21
