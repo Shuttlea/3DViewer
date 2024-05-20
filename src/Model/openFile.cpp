@@ -12,7 +12,7 @@ void OpenFile::open(std::string fileName) {
     in.seekg(0);
     reader->read(in);
     in.close();
-    singl.edgesCount() = singl.edgesCount()/2;
+    singl.edgesCount() = singl.edgesCount() / 2;
     delete reader;
   }
 }
@@ -20,7 +20,7 @@ void OpenFile::open(std::string fileName) {
 void OpenFile::calculateVertCount(std::ifstream& in) {
   Singleton& singl = Singleton::getInstance();
   char first, second;
-  int count=0;
+  int count = 0;
   std::string s;
   while (in.get(first) && in.get(second)) {
     if (first == 'v' && second == ' ') ++count;

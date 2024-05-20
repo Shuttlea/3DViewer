@@ -4,15 +4,14 @@
 #include "openFile.h"
 //#include "../movingClasses/movingClasses.h"
 
+namespace s21 {
 
-namespace s21{
-
-class Facade{
-  public:
-    void open(std::string& fileName);
-    void modify(char c,float value,char axi);
+class Facade {
+ public:
+  void open(std::string& fileName);
+  void modify(char c, float value, char axi);
 };
 
-}//namespace s21
+}  // namespace s21
 
 #endif

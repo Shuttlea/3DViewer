@@ -2,17 +2,20 @@
 
 #include "ui_mainwindow.h"
 
-namespace s21{
+namespace s21 {
 
-MainWindow::MainWindow(Controller * controller,QWidget *parent)
+MainWindow::MainWindow(Controller *controller, QWidget *parent)
     : controller_(controller), QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   gifcounter = 1;
   QRegularExpression rxPositiveDigits("[0-9]*\\.[0-9]*");
-  ui->ScalelineEdit->setValidator(new QRegularExpressionValidator(rxPositiveDigits,this));
-   QRegularExpression rxDigits("-?[0-9]*\\.[0-9]*");
-  ui->MovelineEdit->setValidator(new QRegularExpressionValidator(rxDigits,this));
-  ui->RotatelineEdit->setValidator(new QRegularExpressionValidator(rxDigits,this));
+  ui->ScalelineEdit->setValidator(
+      new QRegularExpressionValidator(rxPositiveDigits, this));
+  QRegularExpression rxDigits("-?[0-9]*\\.[0-9]*");
+  ui->MovelineEdit->setValidator(
+      new QRegularExpressionValidator(rxDigits, this));
+  ui->RotatelineEdit->setValidator(
+      new QRegularExpressionValidator(rxDigits, this));
   connect(this, &MainWindow::Rotate, ui->widget, &MyOpenGLWidget::Rotate);
   connect(this, &MainWindow::Move, ui->widget, &MyOpenGLWidget::Move);
   connect(ui->ScalePlus, SIGNAL(clicked()), this, SLOT(scalePlusClicked()));
@@ -54,13 +57,16 @@ MainWindow::~MainWindow() {
 void MainWindow::on_OpenFileButton_clicked() {
   QFileDialog *qOpenFile = new QFileDialog;
   std::string fileName;
-  fileName = qOpenFile->getOpenFileName(this, tr("Open Model"), "../models/",
-                                        "file (*.obj)", 0,
-                                        QFileDialog::DontUseNativeDialog).toStdString();
+  fileName =
+      qOpenFile
+          ->getOpenFileName(this, tr("Open Model"), "../models/",
+                            "file (*.obj)", 0, QFileDialog::DontUseNativeDialog)
+          .toStdString();
   ui->FileNamelineEdit->setText(QString::fromStdString(fileName));
-  ui->FileNameInfLineEdit->setText(QFileInfo(QString::fromStdString(fileName)).fileName());
+  ui->FileNameInfLineEdit->setText(
+      QFileInfo(QString::fromStdString(fileName)).fileName());
   controller_->openFile(fileName);
-  Singleton& singl = Singleton::getInstance();
+  Singleton &singl = Singleton::getInstance();
   ui->EdgeCountLineEdit->setText(QString::number(singl.edgesCount()));
   ui->VertCountLineEdit->setText(QString::number(singl.vertCount()));
   delete (qOpenFile);
@@ -69,12 +75,18 @@ void MainWindow::on_OpenFileButton_clicked() {
 void MainWindow::on_StopButton_clicked() { timerPlay_.stop(); }
 
 void MainWindow::on_RotateButton_clicked() {
-    controller_->modify('r',ui->RotatelineEdit->text().toFloat(),ui->XRotateRB->isChecked()? 'x': ui->YRotateRB->isChecked() ? 'y' : 'z');
-    emit Rotate();
+  controller_->modify('r', ui->RotatelineEdit->text().toFloat(),
+                      ui->XRotateRB->isChecked()   ? 'x'
+                      : ui->YRotateRB->isChecked() ? 'y'
+                                                   : 'z');
+  emit Rotate();
 }
 
 void MainWindow::on_MoveButton_clicked() {
-  controller_->modify('m',ui->MovelineEdit->text().toFloat() / 10, ui->XMoveRB->isChecked()? 'x': ui->YMoveRB->isChecked() ? 'y': 'z');
+  controller_->modify('m', ui->MovelineEdit->text().toFloat() / 10,
+                      ui->XMoveRB->isChecked()   ? 'x'
+                      : ui->YMoveRB->isChecked() ? 'y'
+                                                 : 'z');
   emit Move(ui->MovelineEdit->text().toFloat() / 10,
             ui->XMoveRB->isChecked()   ? 1
             : ui->YMoveRB->isChecked() ? 2
@@ -85,7 +97,7 @@ void MainWindow::scalePlusClicked() {
   float scale_change = ui->ScalelineEdit->text().toFloat()
                            ? (1 * ui->ScalelineEdit->text().toFloat())
                            : 1.1;
-  controller_->modify('s',scale_change,'x');
+  controller_->modify('s', scale_change, 'x');
   emit ScalePlus(scale_change);
 }
 
@@ -93,7 +105,7 @@ void MainWindow::scaleMinusClicked() {
   float scale_change = ui->ScalelineEdit->text().toFloat()
                            ? (1 / ui->ScalelineEdit->text().toFloat())
                            : 0.9;
-  controller_->modify('s',scale_change,'x');
+  controller_->modify('s', scale_change, 'x');
   emit ScalePlus(scale_change);
 }
 
@@ -240,17 +252,13 @@ void MainWindow::LoadSettings() {
 
 void MainWindow::on_ProjectionButton_clicked() { emit ChangeProjection(); }
 
+void MainWindow::on_PlayButton_clicked() { timerPlay_.start(100); }
 
-void MainWindow::on_PlayButton_clicked()
-{
-    timerPlay_.start(100);
+void MainWindow::play() {
+  controller_->modify('r', 1.1, 'x');
+  controller_->modify('r', 1.1, 'y');
+  controller_->modify('r', 1.1, 'z');
+  emit Rotate();
 }
 
-void MainWindow::play(){
-    controller_->modify('r',1.1,'x');
-    controller_->modify('r',1.1,'y');
-    controller_->modify('r',1.1,'z');
-    emit Rotate();
-}
-
-}//namespace s21
+}  // namespace s21

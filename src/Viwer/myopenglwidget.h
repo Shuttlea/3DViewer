@@ -3,9 +3,9 @@
 
 #define GL_SILENCE_DEPRECATION
 
-//extern "C" {
+// extern "C" {
 //#include "../Model/viewer.h"
-//}
+// }
 
 #include <OpenGl/gl.h>
 #include <OpenGl/glu.h>
@@ -16,7 +16,7 @@
 
 #include "mainwindow.h"
 
-namespace s21{
+namespace s21 {
 
 /*!
         \brief Класс окна отображения модели
@@ -94,6 +94,6 @@ class MyOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions {
   void resizeGL(int w, int h) override;
 };
 
-}//namespace s21
+}  // namespace s21
 
 #endif  // MYOPENGLWIDGET_H

@@ -14,7 +14,7 @@ class Singleton {
   static Singleton *singleton_;
   float **vertMat_ = nullptr;
   int vertCount_;
-  int edgesCount_=0;
+  int edgesCount_ = 0;
   side *firstSide_ = nullptr;
   side *lastSide_;
 

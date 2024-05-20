@@ -6,12 +6,13 @@
 namespace s21 {
 
 class Controller {
-private:
+ private:
   Facade* facade_;
+
  public:
-  Controller(Facade* f):facade_(f){}
+  Controller(Facade* f) : facade_(f) {}
   void openFile(std::string& filename);
-  void modify(char c,float value,char axi);
+  void modify(char c, float value, char axi);
 };
 
 }  // namespace s21
